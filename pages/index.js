@@ -6,10 +6,10 @@ import { motion } from 'framer-motion'
 
 const Home = () => {
 
-    const container = {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1 },
-    }
+    // const container = {
+    //     hidden: { opacity: 0 },
+    //     visible: { opacity: 1 },
+    // }
 
     const item = {
         hidden: { opacity: 0, y: 100 },
@@ -21,6 +21,20 @@ const Home = () => {
                 type: "spring"
             }
         },
+    }
+
+    const boxContainerVariants = {
+        hidden: { opacity: 1 },
+        visible: {
+            opacity: 1, transition: {
+                duration: 1, staggerChildren: .1,
+            }
+        },
+    }
+
+    const boxVariants = {
+        hidden: { opacity: 0, scale: 1.2, x: 50 },
+        visible: { opacity: 1, scale: 1, x: 0 }
     }
 
 
@@ -45,10 +59,11 @@ const Home = () => {
             <section
 
                 className={styles.homeTextContainer}>
+                <h2>Fade in Onscroll</h2>
                 <motion.p
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true }}
+                    viewport={{ once: true, margin: "-20%" }}
                     variants={item}>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic nihil repellat quas doloremque veniam non alias, perspiciatis quaerat ab deserunt vel illo! Harum incidunt, provident minus earum dolore recusandae cum assumenda? Nihil accusantium facere aspernatur dolorem in sint, ex voluptatem alias magni quis explicabo a excepturi minus, consequuntur, saepe nobis eum quasi voluptatum veniam repellat vitae consequatur culpa? Animi qui quam illum, adipisci amet sit doloremque quos ea illo natus.
                 </motion.p>
@@ -108,6 +123,37 @@ const Home = () => {
                     variants={item}>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam harum minima debitis incidunt accusantium officia nobis aut distinctio iusto, provident voluptate ipsam recusandae vitae iste ipsa non commodi voluptates, mollitia in, corrupti omnis beatae? Dolore, repellat! Reprehenderit, nisi! Dolorem maxime praesentium et? Magnam, officiis in eius voluptates, vero nemo dolore incidunt qui deserunt modi dicta minima. Quo illo unde modi veniam fugit in quae, nihil qui, dignissimos incidunt dolor neque alias doloribus reprehenderit suscipit recusandae! Nam possimus eum maxime, atque praesentium consequatur dolore minima suscipit voluptatibus quasi velit et delectus quam provident nostrum perspiciatis eveniet itaque repellat. Dignissimos, sunt minus! Iusto officiis tenetur laboriosam deleniti modi accusamus facere repellendus aspernatur repellat harum voluptates, quasi quibusdam veniam id, repudiandae recusandae fugiat laudantium ducimus reiciendis soluta non, quaerat corrupti! Eius esse debitis, incidunt doloribus omnis facere cumque magni exercitationem accusantium pariatur, beatae qui. Voluptatem fugiat excepturi illo sapiente est cumque, a aliquam delectus, reiciendis distinctio aliquid placeat assumenda unde, quisquam quae nobis esse quasi sint voluptates itaque laborum ab? Quam obcaecati, voluptas aliquid quae deleniti possimus libero excepturi suscipit aperiam assumenda sequi id perspiciatis accusamus doloremque voluptatum reprehenderit accusantium fuga eos fugiat odio molestiae enim porro. Ab iusto minima placeat id ipsam.
                 </motion.p>
+
+
+                <h2>Fade in Staggered</h2>
+                <motion.div
+                    initial="hidden"
+                    animate="visible"
+                    variants={boxContainerVariants}
+                    className={styles.staggerBoxContainer}>
+
+                    <motion.div
+                        variants={boxVariants}>1</motion.div>
+                    <motion.div
+                        variants={boxVariants}>2</motion.div>
+                    <motion.div
+                        variants={boxVariants}>3</motion.div>
+                    <motion.div
+                        variants={boxVariants}>4</motion.div>
+                    <motion.div
+                        variants={boxVariants}>5</motion.div>
+                    <motion.div
+                        variants={boxVariants}>6</motion.div>
+                    <motion.div
+                        variants={boxVariants}>7</motion.div>
+                    <motion.div
+                        variants={boxVariants}>8</motion.div>
+                    <motion.div
+                        variants={boxVariants}>9</motion.div>
+                    <motion.div
+                        variants={boxVariants}>10</motion.div>
+
+                </motion.div>
 
             </section>
         </div>
