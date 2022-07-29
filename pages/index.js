@@ -1,7 +1,8 @@
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import Head from 'next/head'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useRef } from 'react';
 
 
 const Home = () => {
@@ -10,6 +11,14 @@ const Home = () => {
     //     hidden: { opacity: 0 },
     //     visible: { opacity: 1 },
     // }
+
+    const boxRef = useRef(null)
+
+    function removeItem(itemdel) {
+        setArr(arr.filter(item => item !== itemdel))
+    }
+
+    const [arr, setArr] = useState([1, 2, 3, 4, 5])
 
     const item = {
         hidden: { opacity: 0, y: 100 },
@@ -27,7 +36,7 @@ const Home = () => {
         hidden: { opacity: 1 },
         visible: {
             opacity: 1, transition: {
-                duration: 1, staggerChildren: .1,
+                duration: 1, staggerChildren: .1, ease: "linear",
             }
         },
     }
@@ -130,30 +139,90 @@ const Home = () => {
                     initial="hidden"
                     animate="visible"
                     variants={boxContainerVariants}
-                    className={styles.staggerBoxContainer}>
+                    className={styles.staggerBoxContainer}
+                    ref={boxRef}>
 
                     <motion.div
+                        drag={true}
+                        dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                        // dragElastic={0.2}
+                        dragSnapToOrigin={true}
                         variants={boxVariants}>1</motion.div>
                     <motion.div
+                        drag={true}
+                        dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                        // dragElastic={0.2}
+                        dragSnapToOrigin={true}
                         variants={boxVariants}>2</motion.div>
                     <motion.div
+                        drag={true}
+                        dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                        // dragElastic={0.2}
+                        dragSnapToOrigin={true}
                         variants={boxVariants}>3</motion.div>
                     <motion.div
+                        drag={true}
+                        dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                        // dragElastic={0.2}
+                        dragSnapToOrigin={true}
                         variants={boxVariants}>4</motion.div>
                     <motion.div
+                        drag={true}
+                        dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                        // dragElastic={0.2}
+                        dragSnapToOrigin={true}
                         variants={boxVariants}>5</motion.div>
                     <motion.div
+                        drag={true}
+                        dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                        // dragElastic={0.2}
+                        dragSnapToOrigin={true}
                         variants={boxVariants}>6</motion.div>
                     <motion.div
+                        drag={true}
+                        dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                        // dragElastic={0.2}
+                        dragSnapToOrigin={true}
                         variants={boxVariants}>7</motion.div>
                     <motion.div
+                        drag={true}
+                        dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                        // dragElastic={0.2}
+                        dragSnapToOrigin={true}
                         variants={boxVariants}>8</motion.div>
                     <motion.div
+                        drag={true}
+                        dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                        // dragElastic={0.2}
+                        dragSnapToOrigin={true}
                         variants={boxVariants}>9</motion.div>
                     <motion.div
+                        drag={true}
+                        dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                        // dragElastic={0.2}
+                        dragSnapToOrigin={true}
                         variants={boxVariants}>10</motion.div>
 
                 </motion.div>
+
+                <ul>
+                    <AnimatePresence>
+                        {
+                            arr.map(item => (
+                                <motion.li
+                                    onClick={() => removeItem(item)}
+                                    key={item}
+                                    initial={{ opacity: 0, x: 50 }}
+                                    animate={{ opacity: 1, x: [50, -20, 5, 0] }}
+                                    exit={{ opacity: [1, .5, 0], x: [0, -20, 50] }}>
+                                    {item}
+                                </motion.li>
+                            ))
+                        }
+                    </AnimatePresence>
+                </ul>
+
+
 
             </section>
         </div>
